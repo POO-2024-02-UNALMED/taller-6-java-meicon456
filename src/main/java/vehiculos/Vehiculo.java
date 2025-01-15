@@ -9,10 +9,7 @@ public class Vehiculo {
     private double peso;
     private String traccion;
     private Fabricante fabricante;
-    private static int cantidadVehiculos;
-    private static int cantidadAutomoviles;
-    private static int cantidadCamionetas;
-    private static int cantidadCamiones;
+    private static int cantidadVehiculos = 0;
 
     public Vehiculo(String placa, int puertas, int velocidadMaxima, String nombre, double precio, double peso, String traccion, Fabricante fabricante) {
         this.placa = placa;
@@ -24,6 +21,7 @@ public class Vehiculo {
         this.traccion = traccion;
         this.fabricante = fabricante;
         cantidadVehiculos++;
+        fabricante.incrementarVentas();
     }
 
     public static int getCantidadVehiculos() {
@@ -32,12 +30,6 @@ public class Vehiculo {
 
     public static void setCantidadVehiculos(int cantidad) {
         cantidadVehiculos = cantidad;
-    }
-
-    public static String vehiculosPorTipo() {
-        return "Automoviles: " + cantidadAutomoviles + "\n" +
-               "Camionetas: " + cantidadCamionetas + "\n" +
-               "Camiones: " + cantidadCamiones;
     }
 
     public String getPlaca() {
@@ -70,17 +62,5 @@ public class Vehiculo {
 
     public Fabricante getFabricante() {
         return fabricante;
-    }
-
-    public static void incrementarAutomoviles() {
-        cantidadAutomoviles++;
-    }
-
-    public static void incrementarCamionetas() {
-        cantidadCamionetas++;
-    }
-
-    public static void incrementarCamiones() {
-        cantidadCamiones++;
     }
 }
