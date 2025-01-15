@@ -1,11 +1,8 @@
 package vehiculos;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Pais {
     private String nombre;
-    private static Map<Pais, Integer> ventasPorPais = new HashMap<>();
+    private int ventas;
 
     public Pais(String nombre) {
         this.nombre = nombre;
@@ -15,14 +12,23 @@ public class Pais {
         return nombre;
     }
 
-    public static void registrarVenta(Pais pais) {
-        ventasPorPais.put(pais, ventasPorPais.getOrDefault(pais, 0) + 1);
+    public void registrarVenta() {
+        ventas++;
     }
 
-    public static Pais paisMasVendedor() {
-        return ventasPorPais.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .get()
-                .getKey();
+    public int getVentas() {
+        return ventas;
+    }
+
+    public static Pais paisMasVendedor(Pais[] paises) {
+        Pais mayor = null;
+        int maxVentas = -1;
+        for (Pais p : paises) {
+            if (p.getVentas() > maxVentas) {
+                maxVentas = p.getVentas();
+                mayor = p;
+            }
+        }
+        return mayor;
     }
 }
